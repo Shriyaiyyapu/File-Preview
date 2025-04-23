@@ -1,0 +1,2633 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1896</width>
+    <height>1328</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>3D Editor Pro</string>
+  </property>
+  <property name="styleSheet">
+   <string>
+    QMainWindow, QWidget {
+      background-color: #1e1e1e;
+      color: #e0e0e0;
+    }
+    QMenuBar, QToolBar, QDockWidget::title {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+    }
+    QMenuBar::item, QMenu::item {
+      padding: 4px 10px;
+    }
+    QMenuBar::item:selected, QMenu::item:selected {
+      background-color: #3d3d3d;
+    }
+    QMenu {
+      background-color: #2d2d2d;
+      border: 1px solid #444444;
+    }
+    QToolButton, QPushButton {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+      border: none;
+      padding: 5px;
+    }
+    QToolButton:hover, QPushButton:hover {
+      background-color: #3d3d3d;
+    }
+    QToolButton:checked {
+      background-color: #4d4d4d;
+      border-bottom: 2px solid #00a8ff;
+    }
+    QTreeView, QTableWidget, QPlainTextEdit, QLineEdit, QListWidget {
+      background-color: #252525;
+      color: #e0e0e0;
+      border: 1px solid #444444;
+    }
+    QTreeView::item:selected, QTableWidget::item:selected, QListWidget::item:selected {
+      background-color: #3d3d3d;
+    }
+    QHeaderView::section {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+      padding: 5px;
+      border: 1px solid #444444;
+    }
+    QStatusBar {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+    }
+    QTabWidget::pane {
+      border: 1px solid #444444;
+    }
+    QTabBar::tab {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+      padding: 6px 12px;
+      border-top-left-radius: 4px;
+      border-top-right-radius: 4px;
+    }
+    QTabBar::tab:selected {
+      background-color: #3d3d3d;
+      border-bottom: 2px solid #00a8ff;
+    }
+    QSlider::groove:horizontal {
+      height: 4px;
+      background: #444444;
+    }
+    QSlider::handle:horizontal {
+      background: #00a8ff;
+      width: 12px;
+      margin: -4px 0;
+      border-radius: 6px;
+    }
+    QGroupBox {
+      border: 1px solid #444444;
+      margin-top: 12px;
+      padding-top: 12px;
+    }
+    QGroupBox::title {
+      subcontrol-origin: margin;
+      left: 8px;
+      padding: 0 5px;
+    }
+    QComboBox {
+      background-color: #2d2d2d;
+      color: #e0e0e0;
+      border: 1px solid #444444;
+      padding: 2px 8px;
+    }
+    QComboBox::drop-down {
+      subcontrol-origin: padding;
+      subcontrol-position: top right;
+      width: 15px;
+      border-left: 1px solid #444444;
+    }
+    QComboBox QAbstractItemView {
+      background-color: #2d2d2d;
+      selection-background-color: #3d3d3d;
+    }
+    QCheckBox {
+      spacing: 5px;
+    }
+    QCheckBox::indicator {
+      width: 14px;
+      height: 14px;
+    }
+    QRadioButton {
+      spacing: 5px;
+    }
+    QRadioButton::indicator {
+      width: 14px;
+      height: 14px;
+    }
+   </string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QSplitter" name="viewportSplitter">
+      <property name="orientation">
+       <enum>Qt::Orientation::Horizontal</enum>
+      </property>
+      <property name="childrenCollapsible">
+       <bool>false</bool>
+      </property>
+      <widget class="QWidget" name="viewportContainer">
+       <layout class="QVBoxLayout" name="verticalLayout_viewport">
+        <item>
+         <widget class="QComboBox" name="viewportModeSelector">
+          <property name="placeholderText">
+           <string>Viewport Shading</string>
+          </property>
+          <item>
+           <property name="text">
+            <string>Wireframe</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Solid</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Material Preview</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>Rendered</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="viewportToolbar" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_viewportToolbar">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QToolButton" name="snapToGridButton">
+             <property name="text">
+              <string>Snap</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>:/icons/snap.png</normaloff>:/icons/snap.png</iconset>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="snapToAngleButton">
+             <property name="text">
+              <string>Angle</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>:/icons/angle_snap.png</normaloff>:/icons/angle_snap.png</iconset>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QToolButton" name="pivotButton">
+             <property name="text">
+              <string>Pivot</string>
+             </property>
+             <property name="icon">
+              <iconset>
+               <normaloff>:/icons/pivot.png</normaloff>:/icons/pivot.png</iconset>
+             </property>
+             <property name="checkable">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="viewportLabel">
+             <property name="text">
+              <string>Perspective</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QOpenGLWidget" name="openGLWidget">
+          <property name="sizePolicy">
+           <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+            <horstretch>1</horstretch>
+            <verstretch>1</verstretch>
+           </sizepolicy>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>800</width>
+            <height>600</height>
+           </size>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QWidget" name="viewportStatusBar" native="true">
+          <layout class="QHBoxLayout" name="horizontalLayout_viewportStatus">
+           <property name="leftMargin">
+            <number>0</number>
+           </property>
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <property name="rightMargin">
+            <number>0</number>
+           </property>
+           <property name="bottomMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QLabel" name="viewportInfoLabel">
+             <property name="text">
+              <string>Verts: 0 | Faces: 0 | Tris: 0</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="selectionInfoLabel">
+             <property name="text">
+              <string>Selection: None</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignmentFlag::AlignRight|Qt::AlignmentFlag::AlignTrailing|Qt::AlignmentFlag::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+       <zorder>viewportToolbar</zorder>
+       <zorder>openGLWidget</zorder>
+       <zorder>viewportStatusBar</zorder>
+       <zorder>viewportModeSelector</zorder>
+      </widget>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>1896</width>
+     <height>28</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menuFile">
+    <property name="title">
+     <string>File</string>
+    </property>
+    <addaction name="actionNew"/>
+    <addaction name="actionOpen"/>
+    <addaction name="separator"/>
+    <addaction name="actionSave"/>
+    <addaction name="actionSave_As"/>
+    <addaction name="actionExport"/>
+    <addaction name="separator"/>
+    <addaction name="actionImport"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionExit"/>
+   </widget>
+   <widget class="QMenu" name="menuEdit">
+    <property name="title">
+     <string>Edit</string>
+    </property>
+    <addaction name="actionUndo"/>
+    <addaction name="actionRedo"/>
+    <addaction name="separator"/>
+    <addaction name="actionCut"/>
+    <addaction name="actionCopy"/>
+    <addaction name="actionPaste"/>
+    <addaction name="separator"/>
+    <addaction name="actionDelete"/>
+    <addaction name="actionDuplicate"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionPreferences"/>
+   </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>View</string>
+    </property>
+    <widget class="QMenu" name="menuCameras">
+     <property name="title">
+      <string>Cameras</string>
+     </property>
+     <widget class="QMenu" name="menuViewport_Capture">
+      <property name="title">
+       <string>Viewport Capture</string>
+      </property>
+      <addaction name="actionUser_Capture"/>
+      <addaction name="actionSlection_Capture"/>
+     </widget>
+     <addaction name="actionFront_View"/>
+     <addaction name="actionTop_View"/>
+     <addaction name="actionSide_View"/>
+     <addaction name="actionIsometric_View"/>
+     <addaction name="separator"/>
+     <addaction name="menuViewport_Capture"/>
+    </widget>
+    <widget class="QMenu" name="menuWorkspaces">
+     <property name="title">
+      <string>Workspaces</string>
+     </property>
+     <addaction name="separator"/>
+    </widget>
+    <addaction name="actionShow_Grid"/>
+    <addaction name="actionShow_Axis"/>
+    <addaction name="separator"/>
+    <addaction name="menuCameras"/>
+    <addaction name="menuWorkspaces"/>
+    <addaction name="separator"/>
+    <addaction name="actionZoom_In"/>
+    <addaction name="actionZoom_Out"/>
+    <addaction name="actionZoom_to_Fit"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuTools">
+    <property name="title">
+     <string>Tools</string>
+    </property>
+    <widget class="QMenu" name="menuSelection_Tools">
+     <property name="title">
+      <string>Selection Tools</string>
+     </property>
+     <addaction name="separator"/>
+    </widget>
+    <widget class="QMenu" name="menu_Point_Picker">
+     <property name="title">
+      <string> Point Picker</string>
+     </property>
+     <addaction name="actionPick_Points_2"/>
+     <addaction name="actionShow_Points_2"/>
+     <addaction name="actionSave_Points"/>
+    </widget>
+    <addaction name="actionMove_Tool"/>
+    <addaction name="actionRotate_Tool"/>
+    <addaction name="actionScale_Tool"/>
+    <addaction name="separator"/>
+    <addaction name="menuSelection_Tools"/>
+    <addaction name="separator"/>
+    <addaction name="actionVertex_Mode"/>
+    <addaction name="actionEdge_Mode"/>
+    <addaction name="actionFace_Mode"/>
+    <addaction name="actionObject_Mode"/>
+    <addaction name="separator"/>
+    <addaction name="menu_Point_Picker"/>
+   </widget>
+   <widget class="QMenu" name="menuModify">
+    <property name="title">
+     <string>Modify</string>
+    </property>
+    <widget class="QMenu" name="menuDeform">
+     <property name="title">
+      <string>Deform</string>
+     </property>
+    </widget>
+    <addaction name="actionSubdivide"/>
+    <addaction name="actionExtrude"/>
+    <addaction name="actionBevel"/>
+    <addaction name="actionLoop_Cut"/>
+    <addaction name="separator"/>
+    <addaction name="menuDeform"/>
+    <addaction name="separator"/>
+    <addaction name="actionBoolean_Union"/>
+    <addaction name="actionBoolean_Difference"/>
+    <addaction name="actionBoolean_Intersect"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuHelp">
+    <property name="title">
+     <string>Help</string>
+    </property>
+    <addaction name="actionShortcuts"/>
+    <addaction name="separator"/>
+    <addaction name="separator"/>
+    <addaction name="actionAbout"/>
+   </widget>
+   <widget class="QMenu" name="menuCreate">
+    <property name="title">
+     <string>Create</string>
+    </property>
+    <widget class="QMenu" name="menuPrimitives">
+     <property name="title">
+      <string>Primitives</string>
+     </property>
+     <addaction name="actionCube"/>
+     <addaction name="actionSphere"/>
+     <addaction name="actionCylinder"/>
+     <addaction name="actionCone"/>
+     <addaction name="actionTorus"/>
+     <addaction name="actionPlane"/>
+    </widget>
+    <widget class="QMenu" name="menuCurves">
+     <property name="title">
+      <string>Curves</string>
+     </property>
+     <addaction name="actionBezier_Curve"/>
+     <addaction name="actionNURBS_Curve"/>
+    </widget>
+    <addaction name="menuPrimitives"/>
+    <addaction name="menuCurves"/>
+    <addaction name="separator"/>
+    <addaction name="actionLight"/>
+    <addaction name="actionCamera"/>
+   -son
+
+    <addaction name="actionEmpty"/>
+    <addaction name="separator"/>
+    <addaction name="actionText"/>
+    <addaction name="actionReference_Image"/>
+    <addaction name="separator"/>
+   </widget>
+   <widget class="QMenu" name="menuFeatures">
+    <property name="title">
+     <string>Features</string>
+    </property>
+    <widget class="QMenu" name="menuPoint_Picker">
+     <property name="title">
+      <string>Object Detection</string>
+     </property>
+     <widget class="QMenu" name="menuClustering">
+      <property name="title">
+       <string>Clustering</string>
+      </property>
+      <addaction name="actionIdentify_Similar_Clusters"/>
+      <addaction name="actionColor_Assigner"/>
+      <addaction name="actionClustering_mNager"/>
+      <addaction name="actionCluster_list"/>
+     </widget>
+     <widget class="QMenu" name="menuAdd_Objects">
+      <property name="title">
+       <string>Add Objects</string>
+      </property>
+      <addaction name="actionManage_Objects"/>
+     </widget>
+     <widget class="QMenu" name="menuModel_Training">
+      <property name="title">
+       <string>Model Training</string>
+      </property>
+      <addaction name="actionTraining_Manager"/>
+     </widget>
+     <addaction name="menuClustering"/>
+     <addaction name="menuModel_Training"/>
+     <addaction name="menuAdd_Objects"/>
+     <addaction name="actionRecognize_Objects"/>
+    </widget>
+    <widget class="QMenu" name="menuUBG">
+     <property name="title">
+      <string>UBG</string>
+     </property>
+     <widget class="QMenu" name="menuCell_Divison">
+      <property name="title">
+       <string>Cell Divison </string>
+      </property>
+      <addaction name="actionCell_Divison_Slections"/>
+     </widget>
+     <widget class="QMenu" name="menuGrid_Generator">
+      <property name="title">
+       <string>Grid Generator</string>
+      </property>
+      <addaction name="actionGenerate_3D_grid"/>
+      <addaction name="actionGenerate_2D_grid"/>
+      <addaction name="action2D_to_3D_Grid"/>
+      <addaction name="action3D_to_2D_Grid"/>
+      <addaction name="actionGrid_Placment"/>
+      <addaction name="actionGrid_Subdivsion"/>
+     </widget>
+     <addaction name="menuGrid_Generator"/>
+     <addaction name="menuCell_Divison"/>
+     <addaction name="actionCell_Focus"/>
+     <addaction name="actionGrid_Population_desity"/>
+    </widget>
+    <widget class="QMenu" name="menuCollision_Detection">
+     <property name="title">
+      <string>Collision Detection</string>
+     </property>
+     <widget class="QMenu" name="menuCollision_Path_Generator">
+      <property name="title">
+       <string>Collision Path Generator</string>
+      </property>
+      <addaction name="actionPath_Manager"/>
+     </widget>
+     <widget class="QMenu" name="menuCollision_Body">
+      <property name="title">
+       <string>Collision Body</string>
+      </property>
+      <addaction name="actionAlignment_starting_point"/>
+      <addaction name="actionLoad_points"/>
+     </widget>
+     <addaction name="menuCollision_Path_Generator"/>
+     <addaction name="actionCollison_map"/>
+     <addaction name="menuCollision_Body"/>
+    </widget>
+    <addaction name="menuPoint_Picker"/>
+    <addaction name="menuUBG"/>
+    <addaction name="actionDigital_Twinning"/>
+    <addaction name="actionICP"/>
+    <addaction name="menuCollision_Detection"/>
+    <addaction name="actionCDD"/>
+    <addaction name="actionPoint_cloud_Cropper"/>
+   </widget>
+   <widget class="QMenu" name="menuReports">
+    <property name="title">
+     <string>Reports</string>
+    </property>
+    <addaction name="actionCell_Report"/>
+    <addaction name="actionCDD_analysis"/>
+    <addaction name="actionObject_detection_Report"/>
+    <addaction name="actionDigital_twinning"/>
+   </widget>
+   <addaction name="menuFile"/>
+   <addaction name="menuEdit"/>
+   <addaction name="menuView"/>
+   <addaction name="menuCreate"/>
+   <addaction name="menuModify"/>
+   <addaction name="menuTools"/>
+   <addaction name="menuFeatures"/>
+   <addaction name="menuHelp"/>
+   <addaction name="menuReports"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <widget class="QToolBar" name="mainToolBar">
+   <property name="windowTitle">
+    <string>Main Toolbar</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>24</width>
+     <height>24</height>
+    </size>
+   </property>
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="actionNew"/>
+   <addaction name="actionOpen"/>
+   <addaction name="actionSave"/>
+   <addaction name="separator"/>
+   <addaction name="actionUndo"/>
+   <addaction name="actionRedo"/>
+   <addaction name="separator"/>
+   <addaction name="actionMove_Tool"/>
+   <addaction name="actionRotate_Tool"/>
+   <addaction name="actionScale_Tool"/>
+   <addaction name="separator"/>
+   <addaction name="actionVertex_Mode"/>
+   <addaction name="actionEdge_Mode"/>
+   <addaction name="actionFace_Mode"/>
+   <addaction name="actionObject_Mode"/>
+   <addaction name="separator"/>
+   <addaction name="actionFront_View"/>
+   <addaction name="actionTop_View"/>
+   <addaction name="actionSide_View"/>
+   <addaction name="actionIsometric_View"/>
+  </widget>
+  <widget class="QDockWidget" name="hierarchyDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFeature::DockWidgetClosable|QDockWidget::DockWidgetFeature::DockWidgetFloatable|QDockWidget::DockWidgetFeature::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Asset Tree</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>1</number>
+   </attribute>
+   <widget class="QWidget" name="hierarchyDockContents">
+    <layout class="QVBoxLayout" name="verticalLayout_Hierarchy">
+     <item>
+      <widget class="QLineEdit" name="searchHierarchy">
+       <property name="placeholderText">
+        <string>Search assets...</string>
+       </property>
+       <property name="clearButtonEnabled">
+        <bool>true</bool>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="hierarchyFilterBar" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_hierarchyFilters">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QTreeView" name="treeView">
+          <property name="dragDropMode">
+           <enum>QAbstractItemView::DragDropMode::InternalMove</enum>
+          </property>
+          <property name="alternatingRowColors">
+           <bool>true</bool>
+          </property>
+          <property name="headerHidden">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="hierarchyButtons" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_hierarchyButtons">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="addObjectButton">
+          <property name="text">
+           <string>Add</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/add.png</normaloff>:/icons/add.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="deleteObjectButton">
+          <property name="text">
+           <string>Delete</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/delete.png</normaloff>:/icons/delete.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="groupButton">
+          <property name="text">
+           <string>Group</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/group.png</normaloff>:/icons/group.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="propertiesDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFeature::DockWidgetClosable|QDockWidget::DockWidgetFeature::DockWidgetFloatable|QDockWidget::DockWidgetFeature::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Model Properties</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>2</number>
+   </attribute>
+   <widget class="QWidget" name="propertiesDockContents">
+    <layout class="QVBoxLayout" name="verticalLayout_Properties">
+     <item>
+      <widget class="QTabWidget" name="propertiesTabs">
+       <property name="currentIndex">
+        <number>2</number>
+       </property>
+       <widget class="QWidget" name="transformTab">
+        <attribute name="icon">
+         <iconset>
+          <normaloff>:/icons/transform.png</normaloff>:/icons/transform.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Transform</string>
+        </attribute>
+        <layout class="QGridLayout" name="gridLayout_2">
+         <item row="0" column="0">
+          <widget class="QGroupBox" name="transformOptions">
+           <property name="title">
+            <string>Transform Options</string>
+           </property>
+           <layout class="QGridLayout" name="gridLayout_TransformOptions">
+            <item row="0" column="1">
+             <widget class="QComboBox" name="transformSpaceCombo">
+              <item>
+               <property name="text">
+                <string>Local Space</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>World Space</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Parent Space</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <widget class="QPushButton" name="resetTransformButton">
+              <property name="text">
+               <string>Reset Transform</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/reset.png</normaloff>:/icons/reset.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="showGizmoCheckbox">
+              <property name="text">
+               <string>Show Transform Gizmo</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QCheckBox" name="lockScaleCheckbox">
+              <property name="text">
+               <string>Lock Scale Proportions</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="1" column="0">
+          <widget class="QGroupBox" name="transformGroup">
+           <property name="title">
+            <string>Coordinates</string>
+           </property>
+           <layout class="QFormLayout" name="formLayout_Transform">
+            <item row="0" column="0">
+             <widget class="QLabel" name="positionLabel">
+              <property name="text">
+               <string>Position:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_Position">
+              <item>
+               <widget class="QDoubleSpinBox" name="positionX">
+                <property name="prefix">
+                 <string>X: </string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="positionY">
+                <property name="prefix">
+                 <string>Y: </string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="positionZ">
+                <property name="prefix">
+                 <string>Z: </string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>-99999.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>99999.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="rotationLabel">
+              <property name="text">
+               <string>Rotation:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_Rotation">
+              <item>
+               <widget class="QDoubleSpinBox" name="rotationX">
+                <property name="prefix">
+                 <string>X: </string>
+                </property>
+                <property name="suffix">
+                 <string>°</string>
+                </property>
+                <property name="decimals">
+                 <number>1</number>
+                </property>
+                <property name="minimum">
+                 <double>-360.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>360.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="rotationY">
+                <property name="prefix">
+                 <string>Y: </string>
+                </property>
+                <property name="suffix">
+                 <string>°</string>
+                </property>
+                <property name="decimals">
+                 <number>1</number>
+                </property>
+                <property name="minimum">
+                 <double>-360.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>360.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="rotationZ">
+                <property name="prefix">
+                 <string>Z: </string>
+                </property>
+                <property name="suffix">
+                 <string>°</string>
+                </property>
+                <property name="decimals">
+                 <number>1</number>
+                </property>
+                <property name="minimum">
+                 <double>-360.000000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>360.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="scaleLabel">
+              <property name="text">
+               <string>Scale:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <layout class="QHBoxLayout" name="horizontalLayout_Scale">
+              <item>
+               <widget class="QDoubleSpinBox" name="scaleX">
+                <property name="prefix">
+                 <string>X: </string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>0.001000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>9999.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="scaleY">
+                <property name="prefix">
+                 <string>Y: </string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>0.001000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>9999.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QDoubleSpinBox" name="scaleZ">
+                <property name="prefix">
+                 <string>Z: </string>
+                </property>
+                <property name="decimals">
+                 <number>3</number>
+                </property>
+                <property name="minimum">
+                 <double>0.001000000000000</double>
+                </property>
+                <property name="maximum">
+                 <double>9999.000000000000000</double>
+                </property>
+                <property name="value">
+                 <double>1.000000000000000</double>
+                </property>
+               </widget>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item row="2" column="0">
+          <widget class="QGroupBox" name="groupBox">
+           <property name="title">
+            <string>Quick Tools</string>
+           </property>
+           <layout class="QHBoxLayout" name="horizontalLayout">
+            <item>
+             <widget class="QToolButton" name="showLightsButton">
+              <property name="text">
+               <string>Lights</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/light.png</normaloff>:/icons/light.png</iconset>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="showCamerasButton">
+              <property name="text">
+               <string>Cameras</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/camera.png</normaloff>:/icons/camera.png</iconset>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="showMeshButton">
+              <property name="text">
+               <string>Meshes</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/mesh.png</normaloff>:/icons/mesh.png</iconset>
+              </property>
+              <property name="checkable">
+               <bool>true</bool>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QToolButton" name="hierarchyOptionsButton">
+              <property name="text">
+               <string>Options</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/options.png</normaloff>:/icons/options.png</iconset>
+              </property>
+              <property name="popupMode">
+               <enum>QToolButton::ToolButtonPopupMode::InstantPopup</enum>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="materialsTab">
+        <attribute name="icon">
+         <iconset>
+          <normaloff>:/icons/material.png</normaloff>:/icons/material.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Materials</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_Materials">
+         <item>
+          <widget class="QWidget" name="materialToolbar" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_materialToolbar">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QLabel" name="materialLabel">
+              <property name="text">
+               <string>Material:</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="materialSelector">
+              <item>
+               <property name="text">
+                <string>Default Material</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="addMaterialButton">
+              <property name="text">
+               <string/>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/add.png</normaloff>:/icons/add.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QTabWidget" name="materialPropertiesTabs">
+           <property name="currentIndex">
+            <number>0</number>
+           </property>
+           <widget class="QWidget" name="surfaceTab">
+            <attribute name="title">
+             <string>Surface</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_Surface">
+             <item>
+              <widget class="QWidget" name="colorPicker" native="true">
+               <layout class="QFormLayout" name="formLayout_ColorPicker">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="baseColorLabel">
+                  <property name="text">
+                   <string>Base Color:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <layout class="QHBoxLayout" name="horizontalLayout_colorPicker">
+                  <item>
+                   <widget class="QPushButton" name="colorPickerButton">
+                    <property name="minimumSize">
+                     <size>
+                      <width>40</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="maximumSize">
+                     <size>
+                      <width>40</width>
+                      <height>24</height>
+                     </size>
+                    </property>
+                    <property name="styleSheet">
+                     <string>background-color: rgb(200, 100, 100);</string>
+                    </property>
+                    <property name="text">
+                     <string/>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="rSlider">
+                    <property name="maximum">
+                     <number>255</number>
+                    </property>
+                    <property name="value">
+                     <number>200</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="gSlider">
+                    <property name="maximum">
+                     <number>255</number>
+                    </property>
+                    <property name="value">
+                     <number>100</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                  <item>
+                   <widget class="QSlider" name="bSlider">
+                    <property name="maximum">
+                     <number>255</number>
+                    </property>
+                    <property name="value">
+                     <number>100</number>
+                    </property>
+                    <property name="orientation">
+                     <enum>Qt::Orientation::Horizontal</enum>
+                    </property>
+                   </widget>
+                  </item>
+                 </layout>
+                </item>
+               </layout>
+              </widget>
+             </item>
+             <item>
+              <widget class="QTableWidget" name="materialPropertiesTable">
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <property name="showGrid">
+                <bool>false</bool>
+               </property>
+               <property name="cornerButtonEnabled">
+                <bool>false</bool>
+               </property>
+               <property name="rowCount">
+                <number>6</number>
+               </property>
+               <property name="columnCount">
+                <number>2</number>
+               </property>
+               <attribute name="horizontalHeaderDefaultSectionSize">
+                <number>150</number>
+               </attribute>
+               <attribute name="horizontalHeaderStretchLastSection">
+                <bool>true</bool>
+               </attribute>
+               <attribute name="verticalHeaderVisible">
+                <bool>false</bool>
+               </attribute>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <row/>
+               <column>
+                <property name="text">
+                 <string>Property</string>
+                </property>
+               </column>
+               <column>
+                <property name="text">
+                 <string>Value</string>
+                </property>
+               </column>
+               <item row="0" column="0">
+                <property name="text">
+                 <string>Metallic</string>
+                </property>
+               </item>
+               <item row="0" column="1">
+                <property name="text">
+                 <string>0.0</string>
+                </property>
+               </item>
+               <item row="1" column="0">
+                <property name="text">
+                 <string>Roughness</string>
+                </property>
+               </item>
+               <item row="1" column="1">
+                <property name="text">
+                 <string>0.5</string>
+                </property>
+               </item>
+               <item row="2" column="0">
+                <property name="text">
+                 <string>Specular</string>
+                </property>
+               </item>
+               <item row="2" column="1">
+                <property name="text">
+                 <string>0.5</string>
+                </property>
+               </item>
+               <item row="3" column="0">
+                <property name="text">
+                 <string>Transmission</string>
+                </property>
+               </item>
+               <item row="3" column="1">
+                <property name="text">
+                 <string>0.0</string>
+                </property>
+               </item>
+               <item row="4" column="0">
+                <property name="text">
+                 <string>IOR</string>
+                </property>
+               </item>
+               <item row="4" column="1">
+                <property name="text">
+                 <string>1.45</string>
+                </property>
+               </item>
+               <item row="5" column="0">
+                <property name="text">
+                 <string>Emission Strength</string>
+                </property>
+               </item>
+               <item row="5" column="1">
+                <property name="text">
+                 <string>0.0</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="texturesTab">
+            <attribute name="title">
+             <string>Textures</string>
+            </attribute>
+            <layout class="QVBoxLayout" name="verticalLayout_Textures">
+             <item>
+              <widget class="QListWidget" name="texturesList">
+               <property name="alternatingRowColors">
+                <bool>true</bool>
+               </property>
+               <item>
+                <property name="text">
+                 <string>Base Color Map</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Normal Map</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Metallic Map</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Roughness Map</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Displacement Map</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>Emission Map</string>
+                </property>
+               </item>
+              </widget>
+             </item>
+             <item>
+              <widget class="QWidget" name="textureActions" native="true">
+               <layout class="QHBoxLayout" name="horizontalLayout_textureActions">
+                <property name="leftMargin">
+                 <number>0</number>
+                </property>
+                <property name="topMargin">
+                 <number>0</number>
+                </property>
+                <property name="rightMargin">
+                 <number>0</number>
+                </property>
+                <property name="bottomMargin">
+                 <number>0</number>
+                </property>
+                <item>
+                 <widget class="QPushButton" name="loadTextureButton">
+                  <property name="text">
+                   <string>Load</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>:/icons/load.png</normaloff>:/icons/load.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="clearTextureButton">
+                  <property name="text">
+                   <string>Clear</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>:/icons/clear.png</normaloff>:/icons/clear.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+                <item>
+                 <widget class="QPushButton" name="editTextureButton">
+                  <property name="text">
+                   <string>Edit</string>
+                  </property>
+                  <property name="icon">
+                   <iconset>
+                    <normaloff>:/icons/edit.png</normaloff>:/icons/edit.png</iconset>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="modifiersTab">
+        <attribute name="icon">
+         <iconset>
+          <normaloff>:/icons/modifier.png</normaloff>:/icons/modifier.png</iconset>
+        </attribute>
+        <attribute name="title">
+         <string>Modifiers</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_Modifiers">
+         <item>
+          <widget class="QWidget" name="modifierToolbar" native="true">
+           <layout class="QHBoxLayout" name="horizontalLayout_modifierToolbar">
+            <property name="leftMargin">
+             <number>0</number>
+            </property>
+            <property name="topMargin">
+             <number>0</number>
+            </property>
+            <property name="rightMargin">
+             <number>0</number>
+            </property>
+            <property name="bottomMargin">
+             <number>0</number>
+            </property>
+            <item>
+             <widget class="QPushButton" name="addModifierButton">
+              <property name="text">
+               <string>Add Modifier</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/add.png</normaloff>:/icons/add.png</iconset>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QPushButton" name="applyModifierButton">
+              <property name="text">
+               <string>Apply</string>
+              </property>
+              <property name="icon">
+               <iconset>
+                <normaloff>:/icons/apply.png</normaloff>:/icons/apply.png</iconset>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+         <item>
+          <widget class="QListWidget" name="modifierList">
+           <property name="alternatingRowColors">
+            <bool>true</bool>
+           </property>
+           <property name="selectionBehavior">
+            <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QGroupBox" name="modifierSettings">
+           <property name="title">
+            <string>Modifier Settings</string>
+           </property>
+           <layout class="QFormLayout" name="formLayout_ModifierSettings">
+            <item row="0" column="0">
+             <widget class="QLabel" name="subdivLevelLabel">
+              <property name="text">
+               <string>Subdivision Level:</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QSpinBox" name="subdivLevelSpinBox">
+              <property name="minimum">
+               <number>1</number>
+              </property>
+              <property name="maximum">
+               <number>6</number>
+              </property>
+              <property name="value">
+               <number>2</number>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="0">
+             <widget class="QCheckBox" name="showInViewportCheckBox">
+              <property name="text">
+               <string>Show in Viewport</string>
+              </property>
+              <property name="checked">
+               <bool>true</bool>
+              </property>
+             </widget>
+            </item>
+           </layout>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="consoleDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFeature::DockWidgetClosable|QDockWidget::DockWidgetFeature::DockWidgetFloatable|QDockWidget::DockWidgetFeature::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Console</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="consoleDockContents">
+    <layout class="QVBoxLayout" name="verticalLayout_Console">
+     <item>
+      <widget class="QPlainTextEdit" name="consoleOutput">
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
+       <property name="placeholderText">
+        <string>Output will appear here...</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout_Console">
+       <item>
+        <widget class="QLineEdit" name="consoleInput">
+         <property name="placeholderText">
+          <string>Enter command...</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="executeButton">
+         <property name="text">
+          <string>Execute</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QDockWidget" name="assetBrowserDock">
+   <property name="features">
+    <set>QDockWidget::DockWidgetFeature::DockWidgetClosable|QDockWidget::DockWidgetFeature::DockWidgetFloatable|QDockWidget::DockWidgetFeature::DockWidgetMovable</set>
+   </property>
+   <property name="windowTitle">
+    <string>Asset Browser</string>
+   </property>
+   <attribute name="dockWidgetArea">
+    <number>8</number>
+   </attribute>
+   <widget class="QWidget" name="assetDockContents">
+    <layout class="QVBoxLayout" name="verticalLayout_Assets">
+     <item>
+      <widget class="QWidget" name="assetNavigation" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_assetNavigation">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QPushButton" name="assetBackButton">
+          <property name="text">
+           <!-- <string>nice</string> -->
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/back.png</normaloff>:/icons/back.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="assetForwardButton">
+          <property name="text">
+           <!-- <string>niceee</string> -->
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/forward.png</normaloff>:/icons/forward.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="assetUpButton">
+          <property name="text">
+           <!-- <string>^</string> -->
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/up.png</normaloff>:/icons/up.png</iconset>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="assetPathEdit">
+          <property name="placeholderText">
+           <string>Library path...</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="refreshAssetsButton">
+          <property name="text">
+           <string/>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/refresh.png</normaloff>:/icons/refresh.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QTabWidget" name="assetTabs">
+       <property name="currentIndex">
+        <number>0</number>
+       </property>
+       <widget class="QWidget" name="FilesTab">
+        <attribute name="title">
+         <string>Files</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_2">
+         <item>
+          <widget class="QPushButton" name="browseButton">
+           <property name="text">
+            <string>Browse</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QSplitter" name="assetSplitter">
+           <property name="orientation">
+            <enum>Qt::Orientation::Horizontal</enum>
+           </property>
+           <widget class="QWidget" name="fileDetailsContainer" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_fileDetails">
+             <item>
+              <widget class="QTreeView" name="treeView_2"/>
+             </item>
+             <item>
+              <widget class="QGroupBox" name="fileDetailsGroup">
+               <property name="title">
+                <string>File Details</string>
+               </property>
+               <layout class="QFormLayout" name="formLayout_fileDetails">
+                <item row="0" column="0">
+                 <widget class="QLabel" name="fileNameLabel">
+                  <property name="text">
+                   <string>Name:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="0" column="1">
+                 <widget class="QLabel" name="fileNameValue">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="0">
+                 <widget class="QLabel" name="fileSizeLabel">
+                  <property name="text">
+                   <string>Size:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="1" column="1">
+                 <widget class="QLabel" name="fileSizeValue">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="0">
+                 <widget class="QLabel" name="fileTypeLabel">
+                  <property name="text">
+                   <string>Type:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="2" column="1">
+                 <widget class="QLabel" name="fileTypeValue">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="0">
+                 <widget class="QLabel" name="fileDateLabel">
+                  <property name="text">
+                   <string>Date Modified:</string>
+                  </property>
+                 </widget>
+                </item>
+                <item row="3" column="1">
+                 <widget class="QLabel" name="fileDateValue">
+                  <property name="text">
+                   <string/>
+                  </property>
+                 </widget>
+                </item>
+               </layout>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+           <widget class="QWidget" name="previewContainer" native="true">
+            <layout class="QVBoxLayout" name="verticalLayout_preview">
+             <item alignment="Qt::AlignRight">
+              <widget class="QOpenGLWidget" name="previewOpenGLWidget">
+               <property name="fixedSize">
+                <size>
+                 <width>300</width>
+                 <height>300</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+            </layout>
+           </widget>
+          </widget>
+         </item>
+        </layout>
+       </widget>
+       <widget class="QWidget" name="propertiesTab">
+        <attribute name="title">
+         <string>Properties</string>
+        </attribute>
+        <layout class="QVBoxLayout" name="verticalLayout_Favorites">
+         <item>
+          <widget class="QTreeView" name="treeView_3"/>
+         </item>
+        </layout>
+       </widget>
+      </widget>
+     </item>
+     <item>
+      <widget class="QWidget" name="assetSearch" native="true">
+       <layout class="QHBoxLayout" name="horizontalLayout_assetSearch">
+        <property name="leftMargin">
+         <number>0</number>
+        </property>
+        <property name="topMargin">
+         <number>0</number>
+        </property>
+        <property name="rightMargin">
+         <number>0</number>
+        </property>
+        <property name="bottomMargin">
+         <number>0</number>
+        </property>
+        <item>
+         <widget class="QLabel" name="searchLabel">
+          <property name="text">
+           <string>Search:</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLineEdit" name="assetSearchEdit">
+          <property name="placeholderText">
+           <string>Search assets...</string>
+          </property>
+          <property name="clearButtonEnabled">
+           <bool>true</bool>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QPushButton" name="assetFilterButton">
+          <property name="text">
+           <string>Filter</string>
+          </property>
+          <property name="icon">
+           <iconset>
+            <normaloff>:/icons/filter.png</normaloff>:/icons/filter.png</iconset>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <action name="actionNew">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/new.png</normaloff>:/icons/new.png</iconset>
+   </property>
+   <property name="text">
+    <string>New</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+N</string>
+   </property>
+  </action>
+  <action name="actionOpen">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/open.png</normaloff>:/icons/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>Open</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+O</string>
+   </property>
+  </action>
+  <action name="actionSave">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/save.png</normaloff>:/icons/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+S</string>
+   </property>
+  </action>
+  <action name="actionSave_As">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/save_as.png</normaloff>:/icons/save_as.png</iconset>
+   </property>
+   <property name="text">
+    <string>Save As</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+S</string>
+   </property>
+  </action>
+  <action name="actionExport">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/export.png</normaloff>:/icons/export.png</iconset>
+   </property>
+   <property name="text">
+    <string>Export</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+E</string>
+   </property>
+  </action>
+  <action name="actionImport">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/import.png</normaloff>:/icons/import.png</iconset>
+   </property>
+   <property name="text">
+    <string>Import</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+I</string>
+   </property>
+  </action>
+  <action name="actionExit">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/exit.png</normaloff>:/icons/exit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Exit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Q</string>
+   </property>
+  </action>
+  <action name="actionUndo">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/undo.png</normaloff>:/icons/undo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Undo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Z</string>
+   </property>
+  </action>
+  <action name="actionRedo">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/redo.png</normaloff>:/icons/redo.png</iconset>
+   </property>
+   <property name="text">
+    <string>Redo</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Y</string>
+   </property>
+  </action>
+  <action name="actionCut">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/cut.png</normaloff>:/icons/cut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionCopy">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/copy.png</normaloff>:/icons/copy.png</iconset>
+   </property>
+   <property name="text">
+    <string>Copy</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+C</string>
+   </property>
+  </action>
+  <action name="actionPaste">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/paste.png</normaloff>:/icons/paste.png</iconset>
+   </property>
+   <property name="text">
+    <string>Paste</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+V</string>
+   </property>
+  </action>
+  <action name="actionDelete">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/delete.png</normaloff>:/icons/delete.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete</string>
+   </property>
+   <property name="shortcut">
+    <string>Del</string>
+   </property>
+  </action>
+  <action name="actionDuplicate">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/duplicate.png</normaloff>:/icons/duplicate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Duplicate</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+D</string>
+   </property>
+  </action>
+  <action name="actionShow_Grid">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/grid.png</normaloff>:/icons/grid.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show Grid</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+G</string>
+   </property>
+  </action>
+  <action name="actionShow_Axis">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/axis.png</normaloff>:/icons/axis.png</iconset>
+   </property>
+   <property name="text">
+    <string>Show Axis</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+Shift+A</string>
+   </property>
+  </action>
+  <action name="actionFront_View">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/front_view.png</normaloff>:/icons/front_view.png</iconset>
+   </property>
+   <property name="text">
+    <string>Front View</string>
+   </property>
+   <property name="shortcut">
+    <string>F1</string>
+   </property>
+  </action>
+  <action name="actionTop_View">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/top_view.png</normaloff>:/icons/top_view.png</iconset>
+   </property>
+   <property name="text">
+    <string>Top View</string>
+   </property>
+   <property name="shortcut">
+    <string>F2</string>
+   </property>
+  </action>
+  <action name="actionSide_View">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/side_view.png</normaloff>:/icons/side_view.png</iconset>
+   </property>
+   <property name="text">
+    <string>Side View</string>
+   </property>
+   <property name="shortcut">
+    <string>F3</string>
+   </property>
+  </action>
+  <action name="actionIsometric_View">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/isometric_view.png</normaloff>:/icons/isometric_view.png</iconset>
+   </property>
+   <property name="text">
+    <string>Isometric View</string>
+   </property>
+   <property name="shortcut">
+    <string>F4</string>
+   </property>
+  </action>
+  <action name="actionZoom_In">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/zoom_in.png</normaloff>:/icons/zoom_in.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom In</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+=</string>
+   </property>
+  </action>
+  <action name="actionZoom_Out">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/zoom_out.png</normaloff>:/icons/zoom_out.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom Out</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+-</string>
+   </property>
+  </action>
+  <action name="actionZoom_to_Fit">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/zoom_fit.png</normaloff>:/icons/zoom_fit.png</iconset>
+   </property>
+   <property name="text">
+    <string>Zoom to Fit</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+0</string>
+   </property>
+  </action>
+  <action name="actionPreferences">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/preferences.png</normaloff>:/icons/preferences.png</iconset>
+   </property>
+   <property name="text">
+    <string>Preferences</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+P</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/about.png</normaloff>:/icons/about.png</iconset>
+   </property>
+   <property name="text">
+    <string>About</string>
+   </property>
+  </action>
+  <action name="actionShortcuts">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/shortcuts.png</normaloff>:/icons/shortcuts.png</iconset>
+   </property>
+   <property name="text">
+    <string>Keyboard Shortcuts</string>
+   </property>
+  </action>
+  <action name="actionMove_Tool">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/move.png</normaloff>:/icons/move.png</iconset>
+   </property>
+   <property name="text">
+    <string>Move Tool</string>
+   </property>
+   <property name="shortcut">
+    <string>W</string>
+   </property>
+  </action>
+  <action name="actionRotate_Tool">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/rotate.png</normaloff>:/icons/rotate.png</iconset>
+   </property>
+   <property name="text">
+    <string>Rotate Tool</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
+   </property>
+  </action>
+  <action name="actionScale_Tool">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/scale.png</normaloff>:/icons/scale.png</iconset>
+   </property>
+   <property name="text">
+    <string>Scale Tool</string>
+   </property>
+   <property name="shortcut">
+    <string>R</string>
+   </property>
+  </action>
+  <action name="actionVertex_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/vertex.png</normaloff>:/icons/vertex.png</iconset>
+   </property>
+   <property name="text">
+    <string>Vertex Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>1</string>
+   </property>
+  </action>
+  <action name="actionEdge_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/edge.png</normaloff>:/icons/edge.png</iconset>
+   </property>
+   <property name="text">
+    <string>Edge Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>2</string>
+   </property>
+  </action>
+  <action name="actionFace_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/face.png</normaloff>:/icons/face.png</iconset>
+   </property>
+   <property name="text">
+    <string>Face Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>3</string>
+   </property>
+  </action>
+  <action name="actionObject_Mode">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="checked">
+    <bool>true</bool>
+   </property>
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/object.png</normaloff>:/icons/object.png</iconset>
+   </property>
+   <property name="text">
+    <string>Object Mode</string>
+   </property>
+   <property name="shortcut">
+    <string>4</string>
+   </property>
+  </action>
+  <action name="actionCube">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/cube.png</normaloff>:/icons/cube.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cube</string>
+   </property>
+  </action>
+  <action name="actionSphere">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/sphere.png</normaloff>:/icons/sphere.png</iconset>
+   </property>
+   <property name="text">
+    <string>Sphere</string>
+   </property>
+  </action>
+  <action name="actionCylinder">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/cylinder.png</normaloff>:/icons/cylinder.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cylinder</string>
+   </property>
+  </action>
+  <action name="actionCone">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/cone.png</normaloff>:/icons/cone.png</iconset>
+   </property>
+   <property name="text">
+    <string>Cone</string>
+   </property>
+  </action>
+  <action name="actionPlane">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/plane.png</normaloff>:/icons/plane.png</iconset>
+   </property>
+   <property name="text">
+    <string>Plane</string>
+   </property>
+  </action>
+  <action name="actionTorus">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/torus.png</normaloff>:/icons/torus.png</iconset>
+   </property>
+   <property name="text">
+    <string>Torus</string>
+   </property>
+  </action>
+  <action name="actionLight">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/light.png</normaloff>:/icons/light.png</iconset>
+   </property>
+   <property name="text">
+    <string>Light</string>
+   </property>
+  </action>
+  <action name="actionCamera">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/camera.png</normaloff>:/icons/camera.png</iconset>
+   </property>
+   <property name="text">
+    <string>Camera</string>
+   </property>
+  </action>
+  <action name="actionEmpty">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/empty.png</normaloff>:/icons/empty.png</iconset>
+   </property>
+   <property name="text">
+    <string>Empty</string>
+   </property>
+  </action>
+  <action name="actionBezier_Curve">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/curve.png</normaloff>:/icons/curve.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bezier Curve</string>
+   </property>
+  </action>
+  <action name="actionNURBS_Curve">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/nurbs.png</normaloff>:/icons/nurbs.png</iconset>
+   </property>
+   <property name="text">
+    <string>NURBS Curve</string>
+   </property>
+  </action>
+  <action name="actionText">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/text.png</normaloff>:/icons/text.png</iconset>
+   </property>
+   <property name="text">
+    <string>Text</string>
+   </property>
+  </action>
+  <action name="actionReference_Image">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/image.png</normaloff>:/icons/image.png</iconset>
+   </property>
+   <property name="text">
+    <string>Reference Image</string>
+   </property>
+  </action>
+  <action name="actionSubdivide">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/subdivide.png</normaloff>:/icons/subdivide.png</iconset>
+   </property>
+   <property name="text">
+    <string>Subdivide</string>
+   </property>
+  </action>
+  <action name="actionExtrude">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/extrude.png</normaloff>:/icons/extrude.png</iconset>
+   </property>
+   <property name="text">
+    <string>Extrude</string>
+   </property>
+   <property name="shortcut">
+    <string>E</string>
+   </property>
+  </action>
+  <action name="actionBevel">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/bevel.png</normaloff>:/icons/bevel.png</iconset>
+   </property>
+   <property name="text">
+    <string>Bevel</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+B</string>
+   </property>
+  </action>
+  <action name="actionLoop_Cut">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/loopcut.png</normaloff>:/icons/loopcut.png</iconset>
+   </property>
+   <property name="text">
+    <string>Loop Cut</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+R</string>
+   </property>
+  </action>
+  <action name="actionBoolean_Union">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/union.png</normaloff>:/icons/union.png</iconset>
+   </property>
+   <property name="text">
+    <string>Boolean Union</string>
+   </property>
+  </action>
+  <action name="actionBoolean_Difference">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/difference.png</normaloff>:/icons/difference.png</iconset>
+   </property>
+   <property name="text">
+    <string>Boolean Difference</string>
+   </property>
+  </action>
+  <action name="actionBoolean_Intersect">
+   <property name="icon">
+    <iconset>
+     <normaloff>:/icons/intersect.png</normaloff>:/icons/intersect.png</iconset>
+   </property>
+   <property name="text">
+    <string>Boolean Intersect</string>
+   </property>
+  </action>
+  <action name="actionPick_Points_2">
+   <property name="text">
+    <string>Pick Points</string>
+   </property>
+  </action>
+  <action name="actionShow_Points_2">
+   <property name="text">
+    <string>Show Points</string>
+   </property>
+  </action>
+  <action name="actionSave_Points">
+   <property name="text">
+    <string>Save Points</string>
+   </property>
+  </action>
+  <action name="actionIdentify_Similar_Clusters">
+   <property name="text">
+    <string>Identify Similar Clusters</string>
+   </property>
+  </action>
+  <action name="actionCell_Divison_Slections">
+   <property name="text">
+    <string>Cell Divison Slections</string>
+   </property>
+  </action>
+  <action name="actionCell_Focus">
+   <property name="text">
+    <string>Cell Focus</string>
+   </property>
+  </action>
+  <action name="actionGenerate_3D_grid">
+   <property name="text">
+    <string>Generate 3D grid</string>
+   </property>
+  </action>
+  <action name="actionGenerate_2D_grid">
+   <property name="text">
+    <string>Generate 2D grid</string>
+   </property>
+  </action>
+  <action name="action2D_to_3D_Grid">
+   <property name="text">
+    <string>2D to 3D Grid</string>
+   </property>
+  </action>
+  <action name="action3D_to_2D_Grid">
+   <property name="text">
+    <string>Grid Manager</string>
+   </property>
+  </action>
+  <action name="actionGrid_Placment">
+   <property name="text">
+    <string>Grid Placment</string>
+   </property>
+  </action>
+  <action name="actionGrid_Population_desity">
+   <property name="text">
+    <string>Grid Population desity</string>
+   </property>
+  </action>
+  <action name="actionGrid_Subdivsion">
+   <property name="text">
+    <string>Grid Subdivsion</string>
+   </property>
+  </action>
+  <action name="actionDigital_Twinning">
+   <property name="text">
+    <string>Digital Twinning</string>
+   </property>
+  </action>
+  <action name="actionICP">
+   <property name="text">
+    <string>ICP</string>
+   </property>
+  </action>
+  <action name="actionColor_Assigner">
+   <property name="text">
+    <string>Color Assigner</string>
+   </property>
+  </action>
+  <action name="actionClustering_mNager">
+   <property name="text">
+    <string>Clustering Manager</string>
+   </property>
+  </action>
+  <action name="actionCluster_list">
+   <property name="text">
+    <string>Cluster list</string>
+   </property>
+  </action>
+  <action name="actionManage_Objects">
+   <property name="text">
+    <string>Manage Objects</string>
+   </property>
+  </action>
+  <action name="actionTraining_Manager">
+   <property name="text">
+    <string>Training Manager</string>
+   </property>
+  </action>
+  <action name="actionRecognize_Objects">
+   <property name="text">
+    <string>Recognize Objects</string>
+   </property>
+  </action>
+  <action name="actionCollison_map">
+   <property name="text">
+    <string>Collision Map</string>
+   </property>
+  </action>
+  <action name="actionPath_Manager">
+   <property name="text">
+    <string>Path Manager</string>
+   </property>
+  </action>
+  <action name="actionAlignment_starting_point">
+   <property name="text">
+    <string>Alignment / starting point</string>
+   </property>
+  </action>
+  <action name="actionLoad_points">
+   <property name="text">
+    <string>Load points</string>
+   </property>
+  </action>
+  <action name="actionCDD">
+   <property name="text">
+    <string>CDD</string>
+   </property>
+  </action>
+  <action name="actionPoint_cloud_Cropper">
+   <property name="text">
+    <string>Point cloud Cropper</string>
+   </property>
+  </action>
+  <action name="actionUser_Capture">
+   <property name="text">
+    <string>User Capture</string>
+   </property>
+  </action>
+  <action name="actionSlection_Capture">
+   <property name="text">
+    <string>Selection Capture</string>
+   </property>
+  </action>
+  <action name="actionCell_Report">
+   <property name="text">
+    <string>Cell Report</string>
+   </property>
+  </action>
+  <action name="actionCDD_analysis">
+   <property name="text">
+    <string>CDD analysis</string>
+   </property>
+  </action>
+  <action name="actionObject_detection_Report">
+   <property name="text">
+    <string>Object detection Report</string>
+   </property>
+  </action>
+  <action name="actionDigital_twinning">
+   <property name="text">
+    <string>Digital twinning</string>
+   </property>
+  </action>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

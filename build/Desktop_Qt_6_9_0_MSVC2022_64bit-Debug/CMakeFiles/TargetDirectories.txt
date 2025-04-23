@@ -1,0 +1,8 @@
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/QtOpenGLProject.dir
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/edit_cache.dir
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/rebuild_cache.dir
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/list_install_components.dir
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/install.dir
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/install/local.dir
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/QtOpenGLProject_autogen_timestamp_deps.dir
+C:/main_ui/build/Desktop_Qt_6_9_0_MSVC2022_64bit-Debug/CMakeFiles/QtOpenGLProject_autogen.dir
